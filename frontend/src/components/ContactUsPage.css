@@ -1,0 +1,19 @@
+.contact-us-page {
+  padding: 20px;
+  margin-left: 400px; /* Adjusted to match the sidebar width */
+  margin-top: 60px; /* Adjust according to topbar height */
+}
+
+.contact-us-content {
+  margin-top: 20px;
+}
+
+.contact-us-content p {
+  margin: 5px 0;
+}
+
+#map {
+  height: 400px; /* Adjust the height as needed */
+  width: 100%; /* Full width */
+  margin-top: 20px;
+}

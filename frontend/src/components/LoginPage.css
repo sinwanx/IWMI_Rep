@@ -5,9 +5,9 @@
 
 .background-image {
   flex: 1;
-  background-image: url('../assets/12.png'); /* Ensure this path is correct */
-  background-size: cover;
-  background-position: center;
+  background-image: url('../assets/Picture3.png'); /* Ensure this path is correct */
+  background-size: cover; /* Change to cover to ensure no empty space */
+  background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Ensure the image does not repeat */
 }
 

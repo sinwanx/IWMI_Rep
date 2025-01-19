@@ -1,0 +1,23 @@
+.faq-page {
+  padding: 20px;
+  margin-left: 400px; /* Adjusted to match the sidebar width */
+  margin-top: 60px; /* Adjust according to topbar height */
+}
+
+.faq-content {
+  margin-top: 20px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.faq-answer {
+  margin-top: 5px;
+  padding-left: 20px;
+}

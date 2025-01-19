@@ -1,0 +1,17 @@
+/* Ensure the sidebar and topbar have higher z-index values */
+.sidebar {
+    z-index: 1000;
+    // ...existing code...
+}
+
+.topbar {
+    z-index: 1000;
+    // ...existing code...
+}
+
+/* Add margins or padding to the main content area */
+.main-content {
+    margin-top: 60px; /* Adjust based on the height of your topbar */
+    margin-left: 250px; /* Adjust based on the width of your sidebar */
+    // ...existing code...
+}

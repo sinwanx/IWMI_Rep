@@ -4,10 +4,11 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-left: 340px; /* Space from the sidebar */
-  margin-top: 20px; /* Add space from the topbar */
+  margin-top: 100px; /* Ensure enough space from the topbar */
   text-align: center; /* Center the content */
   font-family: 'Roboto', sans-serif; /* Consistent font style */
   padding-top: 0; /* Ensure no padding above the visualization container */
+  position: relative; /* Ensure positioning for chart type buttons */
 }
 
 .visualization-title {
@@ -17,6 +18,50 @@
   font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 5px solid #006400; /* Thicker dark green border */
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px; /* Equal margins from all sides */
+}
+
+.filters label {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
+}
+
+.filters select {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 10px;
+}
+
+.filters select:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.filters select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .visualization-buttons {
@@ -33,78 +78,93 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
-  background-color: #007bff; /* Default blue */
-  color: white;
 }
 
 .visualization-buttons button.acreage {
-  background-color: #4CAF50; /* Acreage */
+  background-color: #4CAF50; /* Green for Acreage */
   color: white;
 }
 
 .visualization-buttons button.acreage:hover {
-  background-color: #388E3C; /* Acreage hover */
+  background-color: #388E3C; /* Darker Green for Acreage hover */
 }
 
 .visualization-buttons button.water {
-  background-color: #2196F3; /* Water */
+  background-color: #2196F3; /* Blue for Water */
   color: white;
 }
 
 .visualization-buttons button.water:hover {
-  background-color: #1976D2; /* Water hover */
+  background-color: #1976D2; /* Darker Blue for Water hover */
 }
 
 .visualization-buttons button.production {
-  background-color: #FF9800; /* Production */
+  background-color: #FF9800; /* Orange for Production */
   color: white;
 }
 
 .visualization-buttons button.production:hover {
-  background-color: #F57C00; /* Production hover */
+  background-color: #F57C00; /* Darker Orange for Production hover */
 }
 
 .visualization-buttons button.income {
-  background-color: #FFC107; /* Income */
+  background-color: #FFC107; /* Yellow for Income */
   color: black;
 }
 
 .visualization-buttons button.income:hover {
-  background-color: #FFA000; /* Income hover */
+  background-color: #FFA000; /* Darker Yellow for Income hover */
 }
 
 .visualization-buttons button.trade {
-  background-color: #9C27B0; /* Trade */
+  background-color: #9C27B0; /* Purple for Trade */
   color: white;
 }
 
 .visualization-buttons button.trade:hover {
-  background-color: #7B1FA2; /* Trade hover */
+  background-color: #7B1FA2; /* Darker Purple for Trade hover */
 }
 
 .visualization-buttons button.consumption {
-  background-color: #009688; /* Consumption */
+  background-color: #F44336; /* Red for Consumption */
   color: white;
 }
 
 .visualization-buttons button.consumption:hover {
-  background-color: #00796B; /* Consumption hover */
+  background-color: #D32F2F; /* Darker Red for Consumption hover */
 }
 
 /* Change colors for the chart type buttons */
-.visualization-buttons button:nth-child(7),
-.visualization-buttons button:nth-child(8),
-.visualization-buttons button:nth-child(9) {
-  background-color: #28a745; /* Green for the chart type buttons */
+.chart-type-buttons {
+  display: flex;
+  justify-content: flex-end; /* Move buttons to the top right corner */
+  gap: 10px;
+  position: absolute;
+  top: 40px; /* Move buttons a little lower */
+  right: 10px;
 }
 
-.visualization-buttons button:hover {
+.chart-type-buttons button {
+  background-color: #28a745; /* Green for the chart type buttons */
+  color: white;
+}
+
+.chart-type-buttons button:hover {
   opacity: 0.8; /* Slightly reduce opacity on hover */
 }
 
-.visualization-buttons button:focus {
+.chart-type-buttons button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.chart-type-buttons button.spider {
+  background-color: #6A1B9A; /* Purple for Spider chart */
+  color: white;
+}
+
+.chart-type-buttons button.spider:hover {
+  background-color: #4A148C; /* Darker Purple for Spider chart hover */
 }
 
 .visualization-buttons .dropdown {
@@ -129,11 +189,49 @@
 
 .chart-container {
   display: flex;
-  justify-content: center; /* Center the chart */
+  flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center the chart */
   height: 100%;
   font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
   overflow-x: auto; /* Add horizontal scroll bar */
+  text-align: center; /* Center the message */
+  color: #333; /* Message color */
+  font-size: 16px; /* Message font size */
+}
+
+.chart-type-selection {
+  margin-top: 10px;
+}
+
+.chart-type-selection label {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+}
+
+.chart-type-selection select {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.chart-type-selection select:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.chart-type-selection select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Additional styling for charts */
@@ -146,4 +244,355 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+}
+
+/* Style the slider */
+.slider {
+  width: 300px; /* Increased width for better visibility */
+  color: #007bff; /* Professional blue color */
+  margin: 0 auto; /* Center the slider */
+}
+
+.slider .MuiSlider-thumb {
+  height: 14px; /* Larger thumb */
+  width: 14px; /* Larger thumb */
+  background-color: #fff;
+  border: 2px solid currentColor;
+}
+
+.slider .MuiSlider-track {
+  height: 6px; /* Larger track */
+  border: none;
+}
+
+.slider .MuiSlider-rail {
+  height: 6px; /* Larger rail */
+  opacity: 0.5;
+  background-color: #bfbfbf;
+}
+
+.slider .MuiSlider-mark {
+  height: 6px; /* Larger marks */
+  width: 6px; /* Larger marks */
+  background-color: currentColor;
+}
+
+.slider .MuiSlider-markLabel {
+  font-size: 12px; /* Larger mark labels */
+}
+
+.visualization-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.visualization-slider label {
+  margin-right: 10px;
+  font-size: 16px; /* Larger font size */
+  color: #333;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+}
+
+/* Styling for the comparison options dropdowns */
+.comparison-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.comparison-options label {
+  font-size: 14px;
+  color: #333;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+}
+
+.comparison-options select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.comparison-options select:hover {
+  border-color: #007bff; /* Blue border on hover */
+}
+
+.comparison-options select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+/* New styles for the graph container */
+.graph-container {
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+}
+
+.graph-container h3 {
+  font-size: 20px;
+  color: #274472;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* New styles for the province and crop selection dropdowns */
+.province-crop-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.province-crop-selection label {
+  font-size: 14px;
+  color: #333;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+}
+
+.province-crop-selection select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.province-crop-selection select:hover {
+  border-color: #007bff; /* Blue border on hover */
+}
+
+.province-crop-selection select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+/* New styles for the province selection dropdown */
+.province-selection {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.province-selection:hover {
+  border-color: #007bff; /* Blue border on hover */
+}
+
+.province-selection:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.year-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.year-selection label {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #333;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+}
+
+.data-display {
+  text-align: left;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif; /* Ensure consistent font style */
+  color: #333; /* Text color */
+}
+
+.data-display h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.data-display pre {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.metric-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.metric-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.metric-button.acreage {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.metric-button.acreage:hover {
+  background-color: #388E3C;
+}
+
+.metric-button.water {
+  background-color: #2196F3;
+  color: white;
+}
+
+.metric-button.water:hover {
+  background-color: #1976D2;
+}
+
+.metric-button.production {
+  background-color: #FF9800;
+  color: white;
+}
+
+.metric-button.production:hover {
+  background-color: #F57C00;
+}
+
+.metric-button.income {
+  background-color: #FFC107;
+  color: black;
+}
+
+.metric-button.income:hover {
+  background-color: #FFA000;
+}
+
+.metric-button.trade {
+  background-color: #9C27B0;
+  color: white;
+}
+
+.metric-button.trade:hover {
+  background-color: #7B1FA2;
+}
+
+.metric-button.consumption {
+  background-color: #F44336;
+  color: white;
+}
+
+.metric-button.consumption:hover {
+  background-color: #D32F2F;
+}
+
+.chart-type-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.chart-type-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.chart-type-button.bar {
+  background-color: #007bff;
+  color: white;
+}
+
+.chart-type-button.bar:hover {
+  background-color: #0056b3;
+}
+
+.chart-type-button.line {
+  background-color: #28a745;
+  color: white;
+}
+
+.chart-type-button.line:hover {
+  background-color: #218838;
+}
+
+.chart-type-button.radar {
+  background-color: #ffc107;
+  color: black;
+}
+
+.chart-type-button.radar:hover {
+  background-color: #e0a800;
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.download-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', sans-serif;
+  background-color: #007bff;
+  color: white;
+}
+
+.download-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.download-buttons button.png {
+  background-color: #FF5722; /* Orange for PNG download */
+}
+
+.download-buttons button.png:hover {
+  background-color: #E64A19; /* Darker Orange for PNG download hover */
+}
+
+.download-buttons button.jpg {
+  background-color: #3F51B5; /* Indigo for JPG download */
+}
+
+.download-buttons button.jpg:hover {
+  background-color: #303F9F; /* Darker Indigo for JPG download hover */
+}
+
+.download-buttons button.pdf {
+  background-color: #F44336; /* Red for PDF download */
+}
+
+.download-buttons button.pdf:hover {
+  background-color: #D32F2F; /* Darker Red for PDF download hover */
 }

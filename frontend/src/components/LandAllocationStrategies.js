@@ -4,6 +4,11 @@ import {
   Line,
   BarChart,
   Bar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
   CartesianGrid,
   Tooltip,
   Legend,
@@ -13,55 +18,52 @@ import {
 } from 'recharts';
 import mockData from '../data/mockData';
 
-const LandAllocationStrategies = ({ section, subsection, scenario, chartType, yearFilter }) => {
-  const [selectedChartType, setSelectedChartType] = useState(chartType || 'Production');
+const LandAllocationStrategies = ({
+  section,
+  subsection,
+  scenario,
+  chartType,
+  setChartType,
+  yearFilter,
+  influence,
+  cropCode,
+  provinceCode,
+  setInfluence,
+}) => {
+  const [selectedMetric, setSelectedMetric] = useState(chartType || 'Production');
   const [data, setData] = useState([]);
 
-  // Mapping of scenarios to mock data keys
+  // Mapping scenarios to mock data keys
   const scenarioKeyMapping = {
-    'Reduction in Large Farms': 'reduction_large',
-    'Increase in Large Farms': 'increase_large',
-    'Reduction in Small Farms': 'reduction_small',
-    'Increase in Small Farms': 'increase_small',
+    'Reduction in Large Farms': 'Reduction in Large Farms',
+    'Increase in Large Farms': 'Increase in Large Farms',
+    'Reduction in Small Farms': 'Reduction in Small Farms',
+    'Increase in Small Farms': 'Increase in Small Farms',
   };
 
   useEffect(() => {
-    const fetchData = () => {
-      console.log('Fetching data for:', { subsection, scenario, selectedChartType, yearFilter });
+    console.log('Selected Options:', { subsection, scenario, selectedMetric, yearFilter });
+    const scenarioKey = scenarioKeyMapping[scenario] || scenario;
+    console.log('Mapped Scenario Key:', scenarioKey);
+    const scenarioData = mockData[subsection]?.[scenarioKey]?.[selectedMetric];
+    console.log('Fetched Data from MockData:', scenarioData);
+    if (scenarioData) {
+      const modifiedData = scenarioData.map(value => value * (1 + influence / 100));
+      console.log('Modified Data:', modifiedData);
+      const filteredData = modifiedData
+        .map((value, index) => ({
+          year: 2014 + index,
+          value,
+        }))
+        .filter((d) => d.year >= yearFilter.start && d.year <= yearFilter.end);
 
-      // Validate year filter
-      if (!yearFilter || yearFilter.start >= yearFilter.end) {
-        console.warn('Invalid year filter:', yearFilter);
-        setData([]);
-        return;
-      }
-
-      // Map scenario to the correct data key
-      const scenarioKey = scenarioKeyMapping[scenario] || scenario;
-      const scenarioData = mockData[subsection]?.[scenarioKey]?.[selectedChartType];
-
-      if (scenarioData) {
-        const filteredData = scenarioData
-          .map((value, index) => ({
-            year: 2014 + index,
-            value,
-          }))
-          .filter((d) => d.year >= yearFilter.start && d.year <= yearFilter.end);
-
-        setData(filteredData);
-        console.log('Filtered data:', filteredData);
-      } else {
-        console.warn('No data found for the selected options:', { subsection, scenarioKey });
-        setData([]);
-      }
-    };
-
-    fetchData();
-  }, [subsection, scenario, selectedChartType, yearFilter]);
-
-  if (!data.length) {
-    return <p>No data available for the selected options.</p>;
-  }
+      console.log('Filtered Data:', filteredData);
+      setData(filteredData.length > 0 ? filteredData : []);
+    } else {
+      console.warn('No data found for the selected options:', { subsection, scenarioKey, selectedMetric });
+      setData([]);
+    }
+  }, [subsection, scenario, selectedMetric, yearFilter, influence]);
 
   const getBarColor = (scenario) => {
     const colors = {
@@ -75,7 +77,11 @@ const LandAllocationStrategies = ({ section, subsection, scenario, chartType, ye
   };
 
   const renderChart = () => {
-    switch (selectedChartType) {
+    if (!data || data.length === 0) {
+      return <p>No data available for the selected options.</p>;
+    }
+
+    switch (chartType) {
       case 'Bar':
         return (
           <ResponsiveContainer width="100%" height={400}>
@@ -87,6 +93,19 @@ const LandAllocationStrategies = ({ section, subsection, scenario, chartType, ye
               <Legend />
               <Bar dataKey="value" fill={getBarColor(scenario)} />
             </BarChart>
+          </ResponsiveContainer>
+        );
+      case 'Spider':
+        return (
+          <ResponsiveContainer width="100%" height={400}>
+            <RadarChart data={data}>
+              <PolarGrid />
+              <PolarAngleAxis dataKey="year" />
+              <PolarRadiusAxis />
+              <Radar name={scenario} dataKey="value" stroke={getBarColor(scenario)} fill={getBarColor(scenario)} fillOpacity={0.6} />
+              <Tooltip />
+              <Legend />
+            </RadarChart>
           </ResponsiveContainer>
         );
       default:
@@ -108,15 +127,20 @@ const LandAllocationStrategies = ({ section, subsection, scenario, chartType, ye
   return (
     <div style={{ padding: '20px' }}>
       <h2>
-        Visualization for {subsection} - {scenario} ({selectedChartType})
+        Visualization for {subsection} - {scenario} ({selectedMetric})
       </h2>
       <div>
-        <button onClick={() => setSelectedChartType('Acreage')}>Acreage</button>
-        <button onClick={() => setSelectedChartType('Water')}>Water</button>
-        <button onClick={() => setSelectedChartType('Production')}>Production</button>
-        <button onClick={() => setSelectedChartType('Income')}>Income</button>
-        <button onClick={() => setSelectedChartType('Trade')}>Trade</button>
-        <button onClick={() => setSelectedChartType('Consumption')}>Consumption</button>
+        <button onClick={() => setSelectedMetric('Acreage')}>Acreage</button>
+        <button onClick={() => setSelectedMetric('Water')}>Water</button>
+        <button onClick={() => setSelectedMetric('Production')}>Production</button>
+        <button onClick={() => setSelectedMetric('Income')}>Income</button>
+        <button onClick={() => setSelectedMetric('Trade')}>Trade</button>
+        <button onClick={() => setSelectedMetric('Consumption')}>Consumption</button>
+      </div>
+      <div className="chart-type-buttons">
+        <button onClick={() => setChartType('Line')}>Line</button>
+        <button onClick={() => setChartType('Bar')}>Bar</button>
+        <button onClick={() => setChartType('Spider')}>Spider</button>
       </div>
       {renderChart()}
     </div>

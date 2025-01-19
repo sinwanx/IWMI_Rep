@@ -1,17 +1,19 @@
-/* Topbar Container */
+/* Topbar Styles */
 .topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1px 5px; /* Slimmer topbar */
-  background: #FFFFFF; /* White background */
+  width: 98%; /* Full width */
+  height: 80px; /* Adjusted topbar height */
+  background: #f7f8f9; /* Light background */
   color: #0D47A1; /* Dark blue text */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow */
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensure space between sections */
+  padding: 0 20px;
   z-index: 1000;
-  margin-bottom: 0; /* Ensure no margin below the topbar */
-  overflow: hidden; /* Ensure content doesn't overflow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for elegance */
+  border-color: #565d69;
 }
 
 /* Left Section */
@@ -20,60 +22,65 @@
   align-items: center;
   gap: 10px; /* Reduced gap */
   white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
 }
 
 .topbar-logo {
-  width: 90px; /* Increased logo size */
+  width: 100px; /* Increased logo size */
   height: auto;
-  /* Removed ticker effect */
 }
 
-.secondary-logo {
-  width: 80px; /* Increased secondary logo size */
-  /* Removed ticker effect */
+.topbar-logo-primary {
+  width: 120px; /* Size for primary logo */
+  height: auto;
+}
+
+.topbar-logo-secondary {
+  width: 120px; /* Size for secondary logo */
+  height: auto;
+}
+
+.topbar-logo-third {
+  width: 100px; /* Size for third logo */
+  height: auto;
+}
+
+.topbar-logo-fourth {
+  width: 50px; /* Size for fourth logo */
+  height: auto;
 }
 
 .dashboard-label {
-  font-weight: bold;
-  font-size: 1.5rem; /* Increased font size */
-  color: #FFFFFF; /* White text */
-  background: #0D47A1; /* Dark blue background for card */
-  padding: 5px 10px; /* Padding for card */
-  border-radius: 5px; /* Rounded corners for card */
-  margin-left: 10px; /* Ensure logos do not overlap the label */
+  display: none; /* Hide the CGE-W dashboard label */
 }
 
 /* Center Section */
 .topbar-center {
-  flex: 1;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between title and logos */
   white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
-  margin-right: 20px; /* Add space between search icon and title */
 }
 
 .topbar-title {
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1.4rem; /* Decreased font size */
   font-weight: bold;
   color: #0D47A1; /* Dark blue text */
+  margin-left: 1px; /* Adjusted margin */
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Text shadow */
-  animation: ticker 20s linear infinite; /* Slower ticker effect */
 }
 
 /* Right Section */
 .topbar-right {
-  display: flex;
+  display: flex; /* Ensure the right section is displayed */
   align-items: center;
   gap: 20px; /* Increased gap */
   white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
 }
 
 .topbar-icon-container {
   font-size: 1.2rem; /* Smaller icons */
   cursor: pointer;
-  color: #0D47A1; /* Dark blue icons */
+  color: #565d69; /* Dark blue icons */
   transition: transform 0.2s ease-in-out, color 0.3s ease;
 }
 
@@ -85,23 +92,34 @@
 /* Navigation Buttons */
 .nav-button {
   background: transparent;
-  border: none; /* Remove border */
+  border: none;
   color: #0D47A1; /* Dark blue text */
-  font-size: 0.9rem; /* Smaller font size */
+  font-size: 0.7rem; /* Reduced font size */
   font-weight: bold; /* Make text bold */
   display: flex;
   align-items: center;
-  gap: 5px; /* Reduced gap */
+  gap: 3px; /* Reduced gap */
   cursor: pointer;
-  padding: 5px 10px; /* Reduced padding */
+  padding: 5px 10px; /* Adjusted padding */
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  z-index: 1002; /* Ensure buttons are above other elements */
+  border-bottom: 1px solid #ccc; /* Add line between buttons */
+  margin-right: 10px; /* Increased space between buttons */
+}
+
+/* Divider between buttons */
+.button-divider {
+  height: 20px; /* Height of the divider */
+  width: 1px; /* Width of the divider */
+  background-color: #ccc; /* Color of the divider */
+  margin: 0 10px; /* Space around the divider */
 }
 
 .nav-button:hover {
-  background-color: #64B5F6; /* Light blue background on hover */
-  color: #FFFFFF; /* White text on hover */
-  transform: scale(1.1);
+  background-color: #E3F2FD; /* Light blue background on hover */
+  color: #0D47A1; /* Dark blue text on hover */
+  transform: scale(1.05);
 }
 
 /* Logout Button */
@@ -110,19 +128,21 @@
   color: white;
   border: none; /* Remove border */
   border-radius: 5px;
-  padding: 5px 10px; /* Reduced padding */
-  font-size: 0.9rem; /* Smaller font size */
+  padding: 5px 10px; /* Adjusted padding */
+  font-size: 0.8rem; /* Reduced font size */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
-  background: #64B5F6; /* Light blue on hover */
+  background: #E3F2FD; /* Light blue on hover */
+  color: #0D47A1; /* Dark blue text on hover */
 }
 
 /* Upload Container */
 .upload-container {
-  position: absolute;
+  display: block; /* Ensure container is displayed */
+  position: fixed; /* Fixed position to pop out */
   top: 50px; /* Adjusted position */
   right: 10px;
   background: white;
@@ -130,6 +150,7 @@
   border-radius: 10px;
   padding: 15px; /* Reduced padding */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  z-index: 1001; /* Ensure it pops out above other elements */
 }
 
 .upload-container h3 {
@@ -223,11 +244,13 @@
 
 /* FAQ Container */
 .faq-container {
-  display: none; /* Initially hidden */
-  position: absolute;
+  display: block; /* Ensure container is displayed */
+  position: fixed; /* Fixed position to pop out */
+  top: 50px; /* Adjusted position */
+  right: 10px;
   background: #FFFFFF;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1001;
+  z-index: 1001; /* Ensure it pops out above other elements */
   width: 300px; /* Adjust width as needed */
   padding: 10px;
 }
@@ -299,11 +322,13 @@
 }
 
 .contact-us-container {
-  display: none; /* Initially hidden */
-  position: absolute;
+  display: block; /* Ensure container is displayed */
+  position: fixed; /* Fixed position to pop out */
+  top: 50px; /* Adjusted position */
+  right: 10px;
   background: #FFFFFF;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1002;
+  z-index: 1002; /* Ensure it pops out above other elements */
   width: 300px; /* Adjust width as needed */
   padding: 10px;
 }
@@ -336,6 +361,43 @@
 
 .close-button:hover {
   color: #64B5F6;
+}
+
+/* Publications Container */
+.publications-container {
+  display: block; /* Ensure container is displayed */
+  position: fixed; /* Fixed position to pop out */
+  top: 50px; /* Adjusted position */
+  right: 10px;
+  background: white;
+  color: #333;
+  border-radius: 10px;
+  padding: 15px; /* Reduced padding */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  z-index: 1001; /* Ensure it pops out above other elements */
+}
+
+.publications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #0D47A1;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.publications-content {
+  text-align: left;
+}
+
+.publications-content a {
+  color: #0D47A1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.publications-content a:hover {
+  text-decoration: underline;
 }
 
 /* Registration Form Modal and Overlay */
@@ -421,6 +483,117 @@
   color: #64B5F6;
 }
 
+/* Add User Form */
+.add-user-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  overflow-y: auto; /* Add vertical scroll */
+}
+
+.add-user-form-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px; /* Reduced padding */
+  width: 80%; /* Reduced width */
+  max-width: 500px; /* Reduced max-width */
+  max-height: 80%; /* Reduced height */
+  overflow-y: auto; /* Add vertical scroll */
+  text-align: center;
+  position: relative;
+  animation: slideIn 0.3s ease-out; /* Add slide-in animation */
+  margin: 20px 0; /* Add margin to ensure it's not hidden */
+}
+
+.add-user-form-container h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem; /* Reduced font size */
+  color: #0D47A1;
+  border-bottom: 2px solid #0D47A1; /* Add bottom border */
+  padding-bottom: 10px;
+}
+
+.add-user-form-container .form-group {
+  margin-bottom: 15px; /* Reduced margin */
+  text-align: left;
+}
+
+.add-user-form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.add-user-form-container input,
+.add-user-form-container select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.add-user-form-container .submit-button {
+  background: #0D47A1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.add-user-form-container .submit-button:hover {
+  background: #64B5F6;
+  transform: scale(1.05); /* Add scale effect on hover */
+}
+
+.add-user-form-container .close-button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #0D47A1;
+  transition: color 0.3s ease;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.add-user-form-container .close-button:hover {
+  color: #64B5F6;
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Ensure buttons are clickable */
+.nav-button, .logout-button, .close-button {
+  z-index: 1003; /* Ensure buttons are above other elements */
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .topbar {
@@ -482,4 +655,86 @@
   to {
     opacity: 1;
   }
+}
+
+/* Additional Logos */
+.additional-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between logos */
+}
+
+.additional-logo {
+  width: 50px; /* Unified size for all additional logos */
+  height: auto;
+}
+
+/* User Menu */
+.user-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #0D47A1; /* Dark blue icon */
+  transition: color 0.3s ease;
+  border-radius: 50%; /* Make the icon circular */
+  padding: 5px; /* Add padding for better click area */
+  border: 2px solid transparent; /* Default border */
+}
+
+.user-icon.active {
+  border-color: green; /* Green border when active */
+}
+
+.user-icon:hover {
+  color: #64B5F6; /* Light blue on hover */
+}
+
+.online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.user-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 2000; /* Ensure it pops out above other elements */
+  visibility: visible; /* Ensure the menu is visible */
+}
+
+.user-menu-item {
+  padding: 10px 20px;
+  background: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #0D47A1; /* Dark blue text */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.user-menu-item:hover {
+  background-color: #64B5F6; /* Light blue background on hover */
+  color: white; /* White text on hover */
 }

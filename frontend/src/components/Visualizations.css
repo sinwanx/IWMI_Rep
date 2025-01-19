@@ -1,0 +1,8 @@
+/* Visualizations Styles */
+.visualizations {
+  margin-left: 250px; /* Offset by the width of the sidebar */
+  padding: 20px;
+  background: #ffffff; /* White background */
+  min-height: calc(100vh - 50px); /* Full height minus the Topbar */
+  margin-top: 50px; /* Offset by the height of the Topbar */
+}

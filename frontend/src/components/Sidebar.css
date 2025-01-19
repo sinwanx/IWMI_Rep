@@ -1,21 +1,21 @@
 /* Sidebar Styles */
 .sidebar {
-  width: 320px; /* Consistent width */
-  height: calc(100vh - 70px); /* Adjust height to account for topbar */
-  background: #0D47A1; /* Dark blue background */
-  color: #ffffff; /* White text */
-  padding: 20px;
+  width: 320px; /* Sidebar width */
+  height: calc(100vh - 50px); /* Sidebar height adjusted for Topbar */
+  background: #f4f4f4; /* Light grey background */
+  color: #333333; /* Dark grey text */
+  padding: 15px;
   position: fixed;
-  top: 50px; /* Adjust top to match the height of the topbar */
-  margin-top: 17px; /* Add space from the top */
+  top: 80px; /* Adjust top to match the height of the Topbar */
   left: 0;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15); /* Light shadow for elegance */
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Arial', sans-serif; /* Professional font style */
+  font-size: 0.9rem; /* Reduced font size */
   z-index: 999;
   overflow-y: auto; /* Single scrollbar for the entire sidebar */
   transition: all 0.3s ease-in-out;
   scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #0D47A1 rgba(255, 255, 255, 0.2); /* Consistent scrollbar color */
+  scrollbar-color: #b0b0b0 rgba(255, 255, 255, 0.2); /* Consistent scrollbar color */
+  border: 1px solid #e0e0e0; /* Very light color border */
 }
 
 /* Custom Scrollbar */
@@ -29,24 +29,13 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #0D47A1; /* Dark blue scrollbar */
+  background-color: #b0b0b0; /* Light grey scrollbar */
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Sidebar Title */
-.sidebar-title {
-  font-size: 1.7rem;
-  margin-bottom: 20px;
-  color: #ffffff; /* White text */
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.1); /* Subtle semi-transparent background */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+/* Removed HEDSS-IWMI tag */
 
 /* Sidebar List */
 .sidebar ul {
@@ -63,31 +52,34 @@
 
 /* Sidebar Links */
 .sidebar ul li a {
-  color: #ffffff; /* White text */
+  color: #333333; /* Dark grey text */
   text-decoration: none;
-  font-size: 1.5rem; /* Reduced font size for sections */
+  font-size: 1rem; /* Reduced font size */
   display: flex;
   align-items: center;
   padding: 12px 20px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08); /* Subtle background for links */
   transition: all 0.3s ease;
+  font-weight: bold; /* Make links bold */
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 /* Decision and Policies Links */
 .sidebar ul li a.decision-policy {
-  font-size: 2rem; /* Increased font size for decision and policies */
+  font-size: 1.5rem; /* Reduced font size */
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 .sidebar ul li a:hover {
-  background-color: #64B5F6; /* Light blue background on hover */
-  color: #ffffff; /* White text on hover */
+  background-color: #9ea9b3; /* Light blue background on hover */
+  color: #333333; /* Dark grey text on hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Raised card effect on hover */
 }
 
 .sidebar ul li a.active {
-  background-color: #64B5F6; /* Light blue background for active link */
-  color: #ffffff; /* White text for active link */
+  background-color: #9ea9b3; /* Light blue background for active link */
+  color: #333333; /* Dark grey text for active link */
   font-weight: bold;
 }
 
@@ -95,7 +87,7 @@
 .sidebar .sidebar-icon {
   margin-right: 15px;
   font-size: 22px;
-  color: #ffffff; /* White icons */
+  color: #333333; /* Dark grey icons */
 }
 
 /* Dropdown Toggles */
@@ -104,17 +96,18 @@
   border-color: #0D47A1; /* Dark blue border */
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem; /* Increased font size */
+  font-size: 1.2rem; /* Reduced font size */
   padding: 12px 20px;
   cursor: pointer;
-  color: #ffffff; /* White text */
+  color: #333333; /* Dark grey text */
   border-radius: 8px;
   transition: all 0.3s ease;
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 .dropdown-toggle:hover {
-  background-color: #64B5F6; /* Light blue background on hover */
-  color: #ffffff; /* White text on hover */
+  background-color: #9ea9b3; /* Light blue background on hover */
+  color: #333333; /* Dark grey text on hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Raised card effect on hover */
 }
 
@@ -123,10 +116,32 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 0.9rem; /* Reduced font size */
   background-color: rgba(255, 255, 255, 0.08);
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif; /* Professional font style */
+  border: 1px solid #e0e0e0; /* Very light color border */
+}
+
+/* Option Items */
+.option-item {
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #e0e0e0; /* Light grey border */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Arial', sans-serif; /* Professional font style */
+  font-size: 0.9rem; /* Reduced font size */
+  color: #333333; /* Dark grey text */
+  cursor: pointer;
+}
+
+.option-item:hover {
+  background-color: #e0f7fa; /* Light cyan background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+  color: #00796b; /* Dark cyan text on hover */
 }
 
 /* Radio Buttons */
@@ -155,19 +170,20 @@
 
 .radio-button-group input[type='radio']:checked {
   background-color: #0D47A1; /* Dark blue background when checked */
-  border-color: #64B5F6; /* Light blue border when checked */
-  box-shadow: 0 0 5px #64B5F6; /* Light blue glow effect */
+  border-color: #9ea9b3; /* Light blue border when checked */
+  box-shadow: 0 0 5px #9ea9b3; /* Light blue glow effect */
 }
 
 .radio-button-group label {
-  color: #ffffff; /* White text */
-  font-size: 1rem;
+  color: #333333; /* Dark grey text */
+  font-size: 0.9rem; /* Reduced font size */
   cursor: pointer;
   transition: color 0.3s ease;
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 .radio-button-group label:hover {
-  color: #64B5F6; /* Light blue text on hover */
+  color: #333333; /* Dark grey text on hover */
 }
 
 /* Nested Dropdown Menu */
@@ -175,7 +191,8 @@
   margin-top: 5px;
   margin-left: 15px;
   padding-left: 10px;
-  font-size: 1.8rem; /* Slightly smaller font size for nested menu */
+  font-size: 1rem; /* Reduced font size */
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 /* Ensure smooth scrolling */
@@ -184,6 +201,7 @@
   scroll-behavior: smooth;
   overflow-y: visible; /* Ensure expanded dropdown fits in view */
   padding-bottom: 20px;
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 /* Slider Container */
@@ -197,10 +215,11 @@
 }
 
 .slider-container label {
-  color: #ffffff; /* White text */
-  font-size: 1rem;
+  color: #333333; /* Dark grey text */
+  font-size: 0.9rem; /* Reduced font size */
   display: block;
   margin-bottom: 10px;
+  font-family: 'Arial', sans-serif; /* Professional font style */
 }
 
 .slider-container .MuiSlider-root {
@@ -229,6 +248,93 @@
 }
 
 .slider-container .MuiSlider-markLabel {
-  color: #ffffff; /* White mark labels */
-  font-size: 0.8rem;
+  color: #333333; /* Dark grey mark labels */
+  font-size: 0.7rem; /* Reduced font size */
+  font-family: 'Arial', sans-serif; /* Professional font style */
+}
+
+/* Search Container */
+.search-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Line Separator */
+hr {
+  border-color: #e0e0e0; /* Light color line separator */
+}
+
+/* Dialog Styles */
+.MuiDialog-paper {
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.MuiDialogTitle-root {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+}
+
+.MuiDialogContent-root {
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #333333;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.data-visualization-button {
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 12px 20px; /* Match padding with other buttons */
+  border-radius: 8px; /* Match border radius with other buttons */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  justify-content: center; /* Center-align the button */
+  margin-right: 10px;
+}
+
+.data-visualization-button:hover {
+  background-color: green;
+  transform: scale(1.05);
+}
+
+.sidebar-icon {
+  margin-right: 15px;
+  font-size: 22px;
+  color: white; /* Ensure icon color is white */
+}
+
+.exploring-message {
+  color: darkgreen;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  transition: opacity 0.5s ease;
+  opacity: 1;
 }

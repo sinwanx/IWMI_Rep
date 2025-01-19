@@ -16,12 +16,24 @@ import {
   Legend,
 } from 'recharts';
 import waterAllocationData from '../data/waterallocationdata.json';
+import mockData from '../data/mockData';
 import './WaterAllocationStrategies.css';
 
-const WaterAllocationStrategies = () => {
+const WaterAllocationStrategies = ({
+  section,
+  subsection,
+  scenario,
+  chartType,
+  setChartType, // Add this line
+  yearFilter,
+  influence,
+  cropCode,
+  provinceCode,
+}) => {
   const [selectedScenarios, setSelectedScenarios] = useState(['base', 'hist']);
-  const [chartType, setChartType] = useState('line'); // Default chart type
+  const [selectedMetric, setSelectedMetric] = useState(chartType || 'Production');
   const [chartData, setChartData] = useState([]);
+  const [data, setData] = useState([]);
 
   const scenarioKeyMapping = {
     base: 'base',
@@ -29,6 +41,12 @@ const WaterAllocationStrategies = () => {
     hist: 'hist',
     'historical-with-basha-dam': 'Bhist',
     lfphe: 'LFPHE',
+    '30 MAF - Historical': '30 MAF - Historical',
+    '30 MAF - Climate': '30 MAF - Climate',
+    '40 MAF - Historical': '40 MAF - Historical',
+    '40 MAF - Climate': '40 MAF - Climate',
+    '50 MAF - Historical': '50 MAF - Historical',
+    '50 MAF - Climate': '50 MAF - Climate',
   };
 
   useEffect(() => {
@@ -57,7 +75,19 @@ const WaterAllocationStrategies = () => {
     });
 
     setChartData(combinedData);
+    console.log("Combined Data:", combinedData); // Log the combined data
   }, [selectedScenarios]);
+
+  useEffect(() => {
+    console.log('Selected Options:', { subsection, scenario, selectedMetric, yearFilter });
+    const scenarioKey = scenarioKeyMapping[scenario] || scenario;
+    console.log('Mapped Scenario Key:', scenarioKey);
+    const scenarioData = mockData[subsection]?.[scenarioKey]?.[selectedMetric];
+    console.log('Fetched Data from MockData:', scenarioData);
+    if (scenarioData) {
+      setData(scenarioData);
+    }
+  }, [subsection, scenario, selectedMetric, yearFilter]);
 
   const handleScenarioChange = (index, value) => {
     const updatedScenarios = [...selectedScenarios];

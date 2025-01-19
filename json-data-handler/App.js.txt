@@ -1,0 +1,21 @@
+const fs = require('fs');
+
+// Load the JSON file
+const data = JSON.parse(fs.readFileSync('complete_json_with_province_crop_data.json', 'utf-8'));
+
+// Access specific data
+const section = "Reduction in Large Farms";
+const metric = "Acreage";
+const province = "Punjab";
+const crop = "Wheat";
+const year = "2014";
+
+// Example: Access a specific value
+const value = data["Land Allocation Strategies"][section]["Historical"][metric][province][crop][year];
+console.log(`Acreage for Wheat in Punjab (2014): ${value}`);
+
+// Example: Loop through all years for a specific crop
+const cropData = data["Land Allocation Strategies"][section]["Historical"][metric][province][crop];
+for (const [year, val] of Object.entries(cropData)) {
+    console.log(`Year: ${year}, Value: ${val}`);
+}
